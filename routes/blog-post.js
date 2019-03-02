@@ -2,7 +2,7 @@ const express = require('express');  //Importing Express
 const router = express.Router();
 
 
-const { POST } = require('../models/blog-post'); //imports the blog post model
+const { BlogPosts } = require('../models/blog-post'); //imports the blog post model
 
 //GET and POST requests should go to /blog-posts.
 //DELETE and PUT requests should go to /blog-posts/:id

@@ -13,12 +13,10 @@ const blogPostRouter = require('./routes/blog-post');
 app.use(express.json());
 app.use(morgan('common'));
 
-app.use('/blog-post', blogPostRouter);
+app.use('/routes/blog-post', blogPostRouter);
 
 //server setup
-app.listen(process.env.PORT || 8080, () => {
-    console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
-});
+
 
 let server;
 
@@ -47,4 +45,8 @@ function closeServer() {
     });
   });
 }
+if (require.main === module) {
+  runServer().catch(err => console.error(err));
+}
 
+module.exports = { app, runServer, closeServer };

@@ -2,6 +2,7 @@ const express = require('express');  //Importing Express
 const router = express.Router();
 
 
+
 const { BlogPosts } = require('../models/blog-post'); //imports the blog post model
 
 //GET and POST requests should go to /blog-posts.
@@ -22,7 +23,7 @@ BlogPosts.create("10 things -- you won't believe #4", lorem(), "Billy Bob");
 BlogPosts.create("Lions and tigers and bears oh my", lorem(), "Lefty Lil");
 // GET =======================================
 router.get('/', function (req, res, next ) {
-    res.json(Post.get());
+    res.json(BlogPosts.get());
 });
 
 
@@ -48,11 +49,10 @@ router.post('/', function(req, res, next) {
 
 
 // DELETE ====================================
-router.delete('/id:', function(req, res, next) {
-    Post.delete(req.params.id);
-    console.log(`Deleted bloq post with id \`${req.params.ID}\``);
-    res.status(204).end();
-
+router.delete("/:id", (req, res) => {
+  BlogPosts.delete(req.params.id);
+  console.log(`Deleted blog post with id \`${req.params.ID}\``);
+  res.status(204).end();
 });
 
 
